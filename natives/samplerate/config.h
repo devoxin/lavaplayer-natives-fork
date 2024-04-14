@@ -9,7 +9,7 @@
 #define HAVE_STDBOOL_H 1
 
 #define PACKAGE "libsamplerate"
-#define VERSION "0.2.2"
+#define VERSION "0.1.9"
 
 #ifdef _MSC_VER
 #define inline __inline
