@@ -12,3 +12,5 @@ natives/opus/opus*
 natives/samplerate/src
 natives/vorbis/*/
 *.log
+.vscode/*
+natives-publish/bin/*

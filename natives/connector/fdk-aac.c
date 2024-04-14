@@ -9,11 +9,16 @@ CONNECTOR_EXPORT void JNICALL Java_com_sedmelluq_discord_lavaplayer_natives_aac_
 	aacDecoder_Close((HANDLE_AACDECODER) instance);
 }
 
-CONNECTOR_EXPORT jint JNICALL Java_com_sedmelluq_discord_lavaplayer_natives_aac_AacDecoderLibrary_configure(JNIEnv *jni, jobject me, jlong instance, jlong buffer_data) {
-	UCHAR* buffer = (UCHAR*)&buffer_data;
-	UINT length = sizeof(jlong);
-	
-	return aacDecoder_ConfigRaw((HANDLE_AACDECODER) instance, &buffer, &length);
+CONNECTOR_EXPORT jint JNICALL Java_com_sedmelluq_discord_lavaplayer_natives_aac_AacDecoderLibrary_configure(JNIEnv *jni, jobject me, jlong instance, jbyteArray config) {
+    jsize buffer_size = (*jni)->GetArrayLength(jni, config);
+    jbyte* buffer_data = (*jni)->GetByteArrayElements(jni, config, NULL);
+
+	UCHAR* buffer_ptr = (UCHAR*)buffer_data;
+	UINT length = (UINT)buffer_size;
+
+	AAC_DECODER_ERROR result = aacDecoder_ConfigRaw((HANDLE_AACDECODER) instance, &buffer_ptr, &length);
+    (*jni)->ReleaseByteArrayElements(jni, config, buffer_data, JNI_ABORT);
+    return result;
 }
 
 CONNECTOR_EXPORT jint JNICALL Java_com_sedmelluq_discord_lavaplayer_natives_aac_AacDecoderLibrary_fill(JNIEnv *jni, jobject me, jlong instance, jobject direct_buffer, jint offset, jint length) {
