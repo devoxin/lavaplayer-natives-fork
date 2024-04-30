@@ -1,9 +1,12 @@
 import org.apache.tools.ant.taskdefs.condition.Os
 
 def getBuildParameters(base) {
+    def arch = System.getProperty("os.arch")
+    if (arch == 'amd64') arch = 'x86-64'
+
     if (Os.isFamily(Os.FAMILY_WINDOWS)) {
         return [
-            'identifier'    : "win-x86-64",
+            'identifier'    : "win-" + arch,
             'library'       : "${base}.dll",
             'setupArguments': ['-DCMAKE_BUILD_TYPE=Release', '-A', 'x64'],
             'buildArguments': ['--config', 'Release'],
@@ -11,7 +14,7 @@ def getBuildParameters(base) {
         ]
     } else if (Os.isFamily(Os.FAMILY_MAC)) {
         return [
-            'identifier'    : 'darwin',
+            'identifier'    : 'darwin-' + arch,
             'library'       : "lib${base}.dylib",
             'setupArguments': ['-DCMAKE_BUILD_TYPE=Release'],
             'buildArguments': [],
@@ -19,7 +22,7 @@ def getBuildParameters(base) {
         ]
     } else {
         return [
-            'identifier'    : "linux-x86-64",
+            'identifier'    : "linux-" + arch,
             'library'       : "lib${base}.so",
             'setupArguments': ['-DCMAKE_BUILD_TYPE=Release'],
             'buildArguments': [],

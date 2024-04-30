@@ -1,0 +1,5 @@
+Install https://github.com/Kitware/CMake/releases/tag/v3.10.2
+Set JAVA_HOME to a JDK >1.8, <=12. Not sure on other versions.
+Probably install a boatload of MSVC/Visual Studio Build tools and such. Not sure on specific ones. Up to 2017 should be fine.
+Add "lib.exe" to your path, usually found somewhere like "C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Tools\MSVC\14.16.27023\bin\Hostx64\x64"
+gradlew compileNatives
