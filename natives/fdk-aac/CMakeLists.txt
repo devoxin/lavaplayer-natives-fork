@@ -4,14 +4,12 @@ project(fdk-aac CXX)
 
 get_filename_component(ROOT_DIR "." ABSOLUTE)
 
-set(FDK_SOURCE "${ROOT_DIR}/fdk-aac-2.0.3")
-
-set(FDK_DIRS "${FDK_SOURCE}/libAACdec" "${FDK_SOURCE}/libFDK" "${FDK_SOURCE}/libSYS" "${FDK_SOURCE}/libMpegTPDec" "${FDK_SOURCE}/libSBRdec" "${FDK_SOURCE}/libPCMutils" "${FDK_SOURCE}/libArithCoding" "${FDK_SOURCE}/libDRCdec" "${FDK_SOURCE}/libSACdec")
+set(MAIN_DIRS "${ROOT_DIR}/libAACdec" "${ROOT_DIR}/libFDK" "${ROOT_DIR}/libSYS" "${ROOT_DIR}/libMpegTPDec" "${ROOT_DIR}/libSBRdec" "${ROOT_DIR}/libPCMutils" "${ROOT_DIR}/libArithCoding" "${ROOT_DIR}/libDRCdec" "${ROOT_DIR}/libSACdec")
 set(MAIN_SOURCES "")
 
-message(STATUS "${FDK_DIRS}")
+message(STATUS "${MAIN_DIRS}")
 
-foreach(subdir ${FDK_DIRS})
+foreach(subdir ${MAIN_DIRS})
 	file (GLOB dir_sources "${subdir}/src/*.cpp" "${subdir}/src/*.h" "${subdir}/include/*.h")
 	set (MAIN_SOURCES ${MAIN_SOURCES} ${dir_sources})
 	

@@ -12,7 +12,8 @@ else()
 	set(SYSNAME "darwin")
 endif()
 
-if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+# compiler id isn't set to msvc on my PC so it's falling to the else statement and setting unrecognised parameters
+if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC" OR ${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
 	add_definitions(-Dinline=__inline)
 
 	set(COMPILER_FLAGS "")
@@ -38,9 +39,10 @@ set(CMAKE_CXX_FLAGS_RELEASE "${COMPILER_FLAGS} ${COMPILER_FLAGS_RELEASE}")
 include_directories("$ENV{JAVA_HOME}/include/")
 
 include_directories("${samplerate_SOURCE_DIR}/src")
+include_directories("${samplerate_SOURCE_DIR}/include")
 include_directories("../opus/opus-1.5.1/include")
-include_directories("../fdk-aac/fdk-aac-2.0.3/libAACdec/include")
-include_directories("../fdk-aac/fdk-aac-2.0.3/libSYS/include")
+include_directories("../fdk-aac/libAACdec/include")
+include_directories("../fdk-aac/libSYS/include")
 include_directories("../vorbis/libvorbis-1.3.7/include")
 include_directories("../vorbis/libogg-1.3.5/include")
 link_directories("../libs/64")
