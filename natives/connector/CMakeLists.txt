@@ -40,7 +40,7 @@ include_directories("$ENV{JAVA_HOME}/include/")
 
 include_directories("${samplerate_SOURCE_DIR}/src")
 include_directories("${samplerate_SOURCE_DIR}/include")
-include_directories("../opus/opus-1.5.1/include")
+include_directories("../opus/opus-1.5.2/include")
 include_directories("../fdk-aac/libAACdec/include")
 include_directories("../fdk-aac/libSYS/include")
 include_directories("../vorbis/libvorbis-1.3.7/include")

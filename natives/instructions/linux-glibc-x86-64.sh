@@ -12,5 +12,5 @@ chmod +x ./gradlew
 
 ./gradlew load
 
-touch natives/opus/opus-1.5.1/aclocal.m4 configure
+touch natives/opus/opus-1.5.2/aclocal.m4 configure
 ./gradlew compileNatives
