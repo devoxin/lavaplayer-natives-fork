@@ -14,7 +14,7 @@ CONNECTOR_EXPORT jlong JNICALL Java_com_sedmelluq_discord_lavaplayer_natives_opu
 }
 
 CONNECTOR_EXPORT jint JNICALL Java_com_sedmelluq_discord_lavaplayer_natives_opus_OpusEncoderLibrary_configure(JNIEnv *jni, jobject me, jlong instance, jint request, jint value) {
-	OpusEncoder* encoder = (OpusEncoder*) instance;
+	OpusEncoder* encoder = (OpusEncoder*)(intptr_t) instance;
 
     if (instance == 0 || encoder == NULL) {
         return 0;
